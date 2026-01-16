@@ -4,7 +4,7 @@ from app.schemas import TimeLimits
 from datetime import datetime, timedelta
 
 
-def time_limits_dep(
+def time_limits_dep( # зависимость для временных интервалов
     start_date: datetime = datetime.now() - timedelta(hours=1),
     end_date: datetime = datetime.now(),
 ) -> TimeLimits:

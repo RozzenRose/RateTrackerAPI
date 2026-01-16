@@ -3,7 +3,7 @@ from sqlalchemy.sql import func
 from app.database.models import BtcUsd, EthUsd
 
 
-async def get_all_current_rates_form_db(db, currency: str):
+async def get_all_current_rates_form_db(db, currency: str): # достаем из БД все записи
     models = {'btc': BtcUsd, 'eth': EthUsd}
     query = select(models[currency])
     answer = await db.execute(query)
@@ -11,7 +11,7 @@ async def get_all_current_rates_form_db(db, currency: str):
     return data
 
 
-async def get_last_current_rates_form_db(db, currency: str):
+async def get_last_current_rates_form_db(db, currency: str): # достаем из БД самую свежую запись
     models = {'btc': BtcUsd, 'eth': EthUsd}
     model = models[currency]
 
@@ -25,7 +25,7 @@ async def get_last_current_rates_form_db(db, currency: str):
     return result.scalars().all()
 
 
-async def get_interval_rates_form_db(db, currency: str, time_limits):
+async def get_interval_rates_form_db(db, currency: str, time_limits): # достаем из БД записи в интервале
     models = {'btc': BtcUsd, 'eth': EthUsd}
     model = models[currency]
 

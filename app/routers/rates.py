@@ -13,21 +13,21 @@ from datetime import datetime
 router = APIRouter(prefix='/rates', tags=['rates'])
 
 
-@router.get('/all_current_rates')
+@router.get('/all_current_rates') # все записи
 async def get_all_current_rates(db: Annotated[AsyncSession, Depends(get_db)],
                                 currency: Currency = Currency.btc):
     answer = await get_all_current_rates_form_db(db, currency)
     return {'answer': answer}
 
 
-@router.get('/last_current_rates')
+@router.get('/last_current_rates') # самая свежая запись
 async def get_last_current_rates(db: Annotated[AsyncSession, Depends(get_db)],
                                  currency: Currency = Currency.btc):
     answer = await get_last_current_rates_form_db(db, currency)
     return {'answer': answer}
 
 
-@router.get('/interval_rates')
+@router.get('/interval_rates') # записи в интервале
 async def get_interval_rates(db: Annotated[AsyncSession, Depends(get_db)],
                              currency: Currency = Currency.btc,
                              time_limits: TimeLimits = Depends(time_limits_dep)):

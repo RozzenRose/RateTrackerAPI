@@ -15,7 +15,7 @@ celery_app = Celery(
 
 # Конфигурация
 celery_app.conf.update(
-    beat_schedule={
+    beat_schedule={ #запускаем воркер сбора данных каждую минуту
         'fetch-deribit-prices-every-minute': {
             'task': 'tasks.fetch_prices_task',
             'schedule': crontab(minute='*')}

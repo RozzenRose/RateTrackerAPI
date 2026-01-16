@@ -9,4 +9,4 @@ app = FastAPI()
 async def root():
     return {"message": "Hello World"}
 
-app.include_router(rates_router)
+app.include_router(rates_router) # включаем роутер с ендпоинтами

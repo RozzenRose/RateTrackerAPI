@@ -3,14 +3,14 @@ from pydantic import BaseModel, model_validator, Field
 from enum import Enum
 
 
-class Currency(str, Enum):
+class Currency(str, Enum): # сделам класс для валют
     btc = "btc"
-    etc = "etc"
+    eth = "eth"
 
 
-class TimeLimits(BaseModel):
-    start_date: datetime = Field(default_factory=lambda: datetime.now() - timedelta(hours=1))
-    end_date: datetime = Field(default_factory=datetime.now)
+class TimeLimits(BaseModel): # валидация для временных интервалов
+    start_date: datetime
+    end_date: datetime
 
     @model_validator(mode='after')
     def check_dates(self):
